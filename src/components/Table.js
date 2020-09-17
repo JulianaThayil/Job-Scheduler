@@ -11,6 +11,9 @@ import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 
+//custom
+import Dialog from "./Dialog";
+
 //icons
 import LowPriorityIcon from '@material-ui/icons/LowPriority';
 
@@ -43,6 +46,18 @@ const useStyles = makeStyles({
 const CustomizedTables = (props) => {
     const classes = useStyles();
     const { jobs } = props;
+    const [selectedJob, setSelectedJob] = useState();
+
+    //Dialog state and handlers
+    const [open, setOpen] = useState(false);
+
+    const handleDialogClose = () => {
+        setOpen(false);
+    };
+    const handleDialogOpen = (job) => {
+        setSelectedJob(job);
+        setOpen(true);
+    };
 
     return (
         <TableContainer component={Paper}>
@@ -60,10 +75,13 @@ const CustomizedTables = (props) => {
 
                             <StyledTableCell>
                                 <IconButton
+                                    onClick={() => handleDialogOpen(job.startOn)}
                                     color="primary"
                                     label="postpone">
                                     <LowPriorityIcon />
                                 </IconButton>
+
+                                <Dialog jobs={jobs} selectedJob={selectedJob} open={open} handleDialogClose={handleDialogClose} />
                             </StyledTableCell>
 
                             <StyledTableCell component="th" scope="row">
