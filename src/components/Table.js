@@ -47,7 +47,8 @@ const CustomizedTables = (props) => {
     const classes = useStyles();
     const { jobs } = props;
     const [selectedJob, setSelectedJob] = useState();
-    const WEEKEND = [moment().day("Saturday").weekday(), moment().day("Sunday").weekday()]
+    const WEEKEND = [moment().day("Saturday").weekday(), moment().day("Sunday").weekday()];
+    const HOLIDAY = ['2020-09-08'];
 
     //Dialog state and handlers
     const [open, setOpen] = useState(false);
@@ -75,7 +76,7 @@ const CustomizedTables = (props) => {
                         <StyledTableRow key={job.startOn}>
 
                             <StyledTableCell>
-                                <IconButton disabled={WEEKEND.includes(moment(job.startOn).weekday())}
+                                <IconButton disabled={WEEKEND.includes(moment(job.startOn).weekday()) || HOLIDAY.includes(moment(job.startOn).format('YYYY-MM-DD'))}
                                     onClick={() => handleDialogOpen(job.startOn)}
                                     color="primary"
                                     label="postpone">
