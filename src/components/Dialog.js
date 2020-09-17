@@ -68,15 +68,19 @@ const CustomDialog = (props) => {
 
         jobs.map((job) => {
             var counter = 0, momentDate = moment(new Date(job.startOn));
-            while (counter < days) {
-                momentDate = momentDate.add(1, 'days');
-                if (!WEEKEND.includes(momentDate.weekday())) {
-                    counter++
+            if (!WEEKEND.includes(momentDate.weekday())) {
+                while (counter < days) {
+                    momentDate = momentDate.add(1, 'days');
+                    if (!WEEKEND.includes(momentDate.weekday())) {
+                        counter++
+                    }
                 }
+                console.log(momentDate.format('YYYY/MM/DD'));
             }
-            console.log(momentDate.format('YYYY/MM/DD'));
-
-        });
+            else {
+                console.log("jobs scheduled on sat/sun cannot be postponed");
+            }
+        })
         handleDialogClose();
     }
 
