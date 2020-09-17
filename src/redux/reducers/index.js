@@ -12,6 +12,10 @@ const initialState = {
         tasks: ["Do homework"]
     },
     {
+        startOn: "2020-09-07",
+        tasks: ["Finish project work", "Fix errors"]
+    },
+    {
         startOn: "2020-09-08",
         tasks: ["Go to play", "Learn React"]
     },
