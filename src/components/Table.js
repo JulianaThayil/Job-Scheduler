@@ -12,8 +12,8 @@ import {
     TableRow,
     Paper,
     Divider,
-    IconButton
-} from '@material-ui/core/IconButton';
+} from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
 
 //custom
 import Dialog from "./Dialog";
