@@ -63,7 +63,20 @@ const CustomDialog = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault(); //to prevent auto reload
-        //add main logic here
+
+        const WEEKEND = [moment().day("Saturday").weekday(), moment().day("Sunday").weekday()]
+
+        jobs.map((job) => {
+            var counter = 0, momentDate = moment(new Date(job.startOn));
+            while (counter < days) {
+                momentDate = momentDate.add(1, 'days');
+                if (!WEEKEND.includes(momentDate.weekday())) {
+                    counter++
+                }
+            }
+            console.log(momentDate.format('YYYY/MM/DD'));
+
+        });
         handleDialogClose();
     }
 
