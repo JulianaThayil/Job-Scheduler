@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment';
+import PropTypes from "prop-types";
+
+//redux
+import { connect } from 'react-redux';
+import { setJobs } from '../redux/actions/index';
 
 //muaterial-ui
 import {
@@ -47,8 +52,10 @@ const CustomDialog = (props) => {
         handleDialogClose,
         selectedJob,
         jobs,
+        setJobs
     } = props
     const [days, setDays] = useState();
+    const [state, setState] = useState(jobs);
 
     const handleDaysChange = (event) => {
         (event.target.value > 0) && setDays(event.target.value);
@@ -93,4 +100,8 @@ const CustomDialog = (props) => {
     );
 };
 
-export default CustomDialog;
+CustomDialog.propTypes = {
+    setJobs: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setJobs })(CustomDialog);
