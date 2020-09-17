@@ -67,12 +67,12 @@ const CustomDialog = (props) => {
         const WEEKEND = [moment().day("Saturday").weekday(), moment().day("Sunday").weekday()];
         const HOLIDAY = ['2020-09-08'];
 
-        jobs.map((job) => {
-            if (moment(job.startOn).isSameOrAfter(selectedJob)) { //Postpone only those jobs which are after the selected job to be postponed not the ones before the selected job.
+        jobs.map((job, index) => {
+            if (moment(job.startOn).isSameOrAfter(selectedJob)) { //postpone only those jobs which are after the selected job to be postponed not the ones before the selected job.
 
                 var counter = 0, momentDate = moment(new Date(job.startOn));
 
-                //postpones the job by n days only if its not a holiday nor a weekend
+                //postpones the job by n days only if its not a on a holiday nor a weekend
                 if (!HOLIDAY.includes(momentDate.format('YYYY-MM-DD')) && !WEEKEND.includes(momentDate.weekday())) {
                     while (counter < days) {
                         momentDate = momentDate.add(1, 'days');
