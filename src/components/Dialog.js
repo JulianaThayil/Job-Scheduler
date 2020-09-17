@@ -85,7 +85,7 @@ const CustomDialog = (props) => {
 
                     //update the jobs state and set updated start date
                     let newArr = [...jobs]
-                    newArr[index].startOn = momentDate.format('YYYY/MM/DD')
+                    newArr[index].startOn = momentDate.format('YYYY-MM-DD')
                     setState(newArr)
                 }
             }
