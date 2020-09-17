@@ -76,6 +76,7 @@ const CustomDialog = (props) => {
                 <DialogTitle id="customized-dialog-title" onClose={handleDialogClose}>
                     Postpone job scheduled for {moment(selectedJob).format('dddd')}  {selectedJob}  by :
                 </DialogTitle>
+
                 <DialogContent >
                     <form >
                         <TextField
@@ -95,6 +96,7 @@ const CustomDialog = (props) => {
                         </Button>
                     </form>
                 </DialogContent>
+
             </Dialog>
         </div>
     );
