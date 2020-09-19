@@ -51,6 +51,7 @@ const CustomDialog = (props) => {
         open,
         handleDialogClose,
         jobs,
+        weekends,
         setJobs
     } = props
     const [days, setDays] = useState();
@@ -63,19 +64,18 @@ const CustomDialog = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault(); //to prevent auto reload
 
-        const WEEKEND = [moment().day("Saturday").weekday(), moment().day("Sunday").weekday()];
         const HOLIDAY = ['2020-09-08'];
 
         jobs.map((job, index) => {
             var counter = 0, momentDate = moment(new Date(job.startOn));
 
             //postpones the job by n days only if its not a on a holiday nor a weekend
-            if (!HOLIDAY.includes(momentDate.format('YYYY-MM-DD')) && !WEEKEND.includes(momentDate.weekday())) {
+            if (!HOLIDAY.includes(momentDate.format('YYYY-MM-DD')) && !weekends.includes(momentDate.weekday())) {
                 while (counter < days) {
                     momentDate = momentDate.add(1, 'days');
 
                     //skips postponing a job to a holiday or a weekend
-                    if (!HOLIDAY.includes(momentDate.format('YYYY-MM-DD')) && !WEEKEND.includes(momentDate.weekday())) {
+                    if (!HOLIDAY.includes(momentDate.format('YYYY-MM-DD')) && !weekends.includes(momentDate.weekday())) {
                         counter++
                     }
                 }
@@ -87,8 +87,6 @@ const CustomDialog = (props) => {
             }
         })
         setJobs(state);//update the jobs state in redux store
-        console.log(state)
-
         handleDialogClose(); //close dialog
     }
 
@@ -134,6 +132,7 @@ CustomDialog.propTypes = {
 const mapStateToProps = (state) => {
     return {
         jobs: state.jobs,
+        weekends: state.weekends,
     };
 };
 

@@ -23,7 +23,8 @@ const initialState = {
         startOn: "2020-09-09",
         tasks: ["Chill", "Visit the doctor"]
     }
-    ]
+    ],
+    weekends: [6, 0]
 };
 
 const Reducer = (state = initialState, action) => {
@@ -32,6 +33,12 @@ const Reducer = (state = initialState, action) => {
             return {
                 ...state,
                 jobs: action.payload
+            }
+
+        case 'SET_WEEKENDS':
+            return {
+                ...state,
+                weekends: action.payload
             }
 
         default:

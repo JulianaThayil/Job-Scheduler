@@ -4,3 +4,10 @@ export const setJobs = (payload) => async (dispatch) => {
         payload: payload
     });
 };
+
+export const setWeekends = (payload) => async (dispatch) => {
+    dispatch({
+        type: 'SET_WEEKENDS',
+        payload: payload
+    });
+};
