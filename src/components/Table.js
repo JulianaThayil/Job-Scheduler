@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Dialog from './Dialog';
+import Checkboxes from './CheckboxGroup';
+import '../App.css';
+
+import PropTypes from "prop-types";
+import Button from '@material-ui/core/Button';
+
 import moment from 'moment';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+
+//redux
+import { connect } from 'react-redux';
 
 //Material ui
 import {
@@ -10,7 +20,6 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    Paper,
     Divider,
 } from '@material-ui/core';
 
@@ -35,45 +44,80 @@ const StyledTableRow = withStyles((theme) => ({
 
 const useStyles = makeStyles({
     table: {
-        width: 'fit-content',
-        padding: 100
+        minWidth: 'fit-content',
+        padding: 200,
+        backgroundColor: 'white',
+
     },
 });
 
 const CustomizedTables = (props) => {
     const classes = useStyles();
-    const { jobs } = props;
+    const [jobs, setJobs] = useState(props.jobs);
+
+    //dialog state and handlers
+    const [open, setOpen] = useState(false);
+
+    const handleDialogClose = () => {
+        setOpen(false);
+    };
+    const handleDialogOpen = (job) => {
+        setOpen(true);
+    };
 
     return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell >Start On</StyledTableCell>
-                        <StyledTableCell >Tasks</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {jobs.map((job) => (
-                        <StyledTableRow key={job.startOn}>
+        <div className="Table" >
 
-                            <StyledTableCell component="th" scope="row">
-                                {moment(job.startOn).format('dddd')} {job.startOn}
-                            </StyledTableCell>
+            <div className="Settings">
+                <Button onClick={handleDialogOpen} variant="contained" color="secondary">
+                    Skip each Job by n days
+                            </Button>
+                <Dialog handleDialogClose={handleDialogClose} open={open}> </Dialog>
+                <Checkboxes />
+            </div>
 
-                            <StyledTableCell >{job.tasks.map((task) => (
-                                <div>
-                                    {task}
-                                    <Divider />
-                                </div>
+            <TableContainer >
+                <Table className={classes.table} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell >Start On</StyledTableCell>
+                            <StyledTableCell >Tasks</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
 
-                            ))}</StyledTableCell>
+                        {jobs.map((job) => (
+                            <StyledTableRow key={job.startOn}>
 
-                        </StyledTableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer >
+                                <StyledTableCell component="th" scope="row">
+                                    {moment(job.startOn).format('dddd')} {job.startOn}
+                                </StyledTableCell>
+
+                                <StyledTableCell >{job.tasks.map((task) => (
+                                    <div>
+                                        {task}
+                                        <Divider />
+                                    </div>
+
+                                ))}</StyledTableCell>
+
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer >
+        </div>
     );
 }
-export default CustomizedTables;
+
+CustomizedTables.propTypes = {
+    jobs: PropTypes.array.isRequired
+};
+
+const mapStateToProps = (state) => {
+    return {
+        jobs: state.jobs,
+    };
+};
+
+export default connect(mapStateToProps)(CustomizedTables);

@@ -50,7 +50,6 @@ const CustomDialog = (props) => {
     const {
         open,
         handleDialogClose,
-        selectedJob,
         jobs,
         setJobs
     } = props
@@ -82,12 +81,13 @@ const CustomDialog = (props) => {
                 }
 
                 //update the jobs state and set updated start date
-                let newArr = [...jobs]
+                let newArr = [...state]
                 newArr[index].startOn = momentDate.format('YYYY-MM-DD')
                 setState(newArr)
             }
         })
         setJobs(state);//update the jobs state in redux store
+        console.log(state)
 
         handleDialogClose(); //close dialog
     }
@@ -99,7 +99,7 @@ const CustomDialog = (props) => {
                 open={open}
             >
                 <DialogTitle id="customized-dialog-title" onClose={handleDialogClose}>
-                    Postpone job scheduled for {moment(selectedJob).format('dddd')}  {selectedJob}  by :
+                    Skip Each job by :
                 </DialogTitle>
 
                 <DialogContent >
@@ -115,7 +115,7 @@ const CustomDialog = (props) => {
                         <Button
                             onClick={handleSubmit}
                             variant="contained"
-                            color="primary"
+                            color="secondary"
                         >
                             Postpone
                         </Button>
@@ -131,4 +131,10 @@ CustomDialog.propTypes = {
     setJobs: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setJobs })(CustomDialog);
+const mapStateToProps = (state) => {
+    return {
+        jobs: state.jobs,
+    };
+};
+
+export default connect(mapStateToProps, { setJobs })(CustomDialog);

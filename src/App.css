@@ -1,13 +1,41 @@
 .App {
-  display:flex;
-  align-content: center;
-  align-items: center;
-  flex-direction: column;
-  justify-content:center;
   width: 100vw;
   height: 100vh;
+  display:flex;
+  align-content: center;
+  align-self: center;
+  justify-content: center;
   background-image:url('/assets/mz133yt5.jpg');
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.Home {
+  display:flex;
+  align-content: center;
+  align-self: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Table {
+  display:flex;
+  align-content: center;
+  align-self: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Settings {
+  width:100% ;
+  background-color: white;
+  padding: 5%;
+}
+
+.Checkboxes {
+  width:fit-content ;
+  margin-top: 15%;
+  padding: 15%;
+  border: 1px solid black;
 }

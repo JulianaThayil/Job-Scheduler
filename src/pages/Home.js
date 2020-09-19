@@ -1,22 +1,14 @@
 import React from 'react';
+import '../App.css';
+//custom
 import Table from "../components/Table";
 
-//redux
-import { connect } from 'react-redux';
-
-const Home = (props) => {
-    const { jobs } = props;
+const Home = () => {
     return (
-        <div >
-            <Table jobs={jobs}></Table>
+        <div className="Home">
+            <Table className="Table"></Table>
         </div>
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        jobs: state.jobs,
-    };
-};
-
-export default connect(mapStateToProps)(Home);
+export default Home;
