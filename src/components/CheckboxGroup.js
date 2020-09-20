@@ -14,7 +14,7 @@ import {
     FormControl,
     FormGroup,
     FormControlLabel
-} from '@material-ui/core/FormControlLabel';
+} from '@material-ui/core';
 
 const Checkboxes = (props) => {
     const { setWeekends } = props;
