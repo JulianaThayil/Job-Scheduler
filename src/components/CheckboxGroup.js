@@ -45,7 +45,7 @@ const Checkboxes = (props) => {
     return (
         <div className="Checkboxes">
             <FormControl component="fieldset">
-                <FormLabel component="legend">Customize working days</FormLabel>
+                <FormLabel component="legend">Customize working days and hit save</FormLabel>
                 <FormGroup>
                     {weekdays.map((weekday => (
                         <FormControlLabel

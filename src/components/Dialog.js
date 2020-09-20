@@ -86,6 +86,7 @@ const CustomDialog = (props) => {
                 setState(newArr)
             }
         })
+        //const sortedJobs = state.sort((a, b) => new Date(a.startOn) - new Date(b.startOn));
         setJobs(state);//update the jobs state in redux store
         handleDialogClose(); //close dialog
     }

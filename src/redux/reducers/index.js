@@ -22,6 +22,14 @@ const initialState = {
     {
         startOn: "2020-09-09",
         tasks: ["Chill", "Visit the doctor"]
+    },
+    {
+        startOn: "2020-09-10",
+        tasks: ["Code review"]
+    },
+    {
+        startOn: "2020-09-11",
+        tasks: ["Complete documentation", "Commit requested changes"]
     }
     ],
     weekends: [6, 0]
