@@ -44,10 +44,8 @@ const StyledTableRow = withStyles((theme) => ({
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 'fit-content',
         padding: 200,
         backgroundColor: 'white',
-
     },
 });
 
@@ -71,7 +69,7 @@ const CustomizedTables = (props) => {
             <div className="Settings">
                 <Button onClick={handleDialogOpen} variant="contained" color="secondary">
                     Skip each Job by n days
-                            </Button>
+                </Button>
                 <Dialog handleDialogClose={handleDialogClose} open={open}> </Dialog>
                 <Checkboxes />
             </div>

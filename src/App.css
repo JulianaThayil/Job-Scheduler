@@ -25,10 +25,12 @@
   align-self: center;
   flex-direction: row;
   justify-content: space-between;
+  height: 90vh;
+  width:55vw;
 }
 
 .Settings {
-  width:100% ;
+  width:80% ;
   background-color: white;
   padding: 5%;
 }
