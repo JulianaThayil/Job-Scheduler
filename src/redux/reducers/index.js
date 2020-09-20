@@ -25,11 +25,19 @@ const initialState = {
     },
     {
         startOn: "2020-09-10",
-        tasks: ["Code review"]
+        tasks: ["Code review", "Complete UI for project"]
     },
     {
         startOn: "2020-09-11",
         tasks: ["Complete documentation", "Commit requested changes"]
+    },
+    {
+        startOn: "2020-09-12",
+        tasks: ["Take cat for a walk"]
+    },
+    {
+        startOn: "2020-09-13",
+        tasks: ["Hang out with friends"]
     }
     ],
     weekends: [6, 0]
